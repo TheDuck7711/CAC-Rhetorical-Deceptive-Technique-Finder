@@ -9,7 +9,9 @@
     </head>
     <body>
         <h1>Analysis Results</h1>
-        <p>Your text contains {{ word_count  }} words.</p>
+        <p>Your text contains {{ word_count  }} words.</p><br>
+        <p>The extremenes of your text's sentiment was {{ abs_avg }}/5 and the net sentiment on a scale of -5 (very unpositive) and 5 very positive was {{ net_avg }} where the range was from {{ range_low }} to {{ range_high }} </p><br>
+        <p>Your text contained {{ numb_rhetoric }} pejoritave and rhetorical terms which makes up {{ percent_rhetoric }}% of your total text</p>
         <h2>Analyzed text:</h2>
         <p>{{ text }}</p><br>
         <p><a href="/">Back to Home</a></p>
