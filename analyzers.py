@@ -45,3 +45,14 @@ def rhetoric_spotter(text):
                 word_list.append(word)
     values = (len(word_list),len(word_list)/len(text.split()),word_list)
     return values
+
+def rhetoric_spotter_v2(text):
+    word_counts = {}
+    word_ticker = 0
+    for word in text.split():
+            word = word.lower().strip(".,!?\"()'")
+            if word in rhetoric:
+                word_ticker += 1
+                word_counts[word] = word_counts.get(word,0)+1
+    values = (word_ticker, word_ticker/len(text.split()), word_counts)
+    return values
