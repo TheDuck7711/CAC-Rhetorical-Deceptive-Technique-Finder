@@ -49,7 +49,22 @@ def rhetoric_spotter(text):
 def rhetoric_spotter_v2(text):
     word_counts = {}
     word_ticker = 0
-    for word in text.split():
+    text_list = text.split()
+    quote_indeces = []
+    counter = 1
+
+    for i in range(len(text_list)):
+        if '"' in text_list[i]:
+            quote_indeces.insert(0,i)
+            while i+counter < len(text_list) and '"' not in text_list[i + counter]:
+                quote_indeces.insert(0,i+counter)
+                counter += 1
+            counter = 1
+
+    for i in range(len(quote_indeces)):
+         del(text_list[quote_indeces[i]])
+              
+    for word in text_list:
             word = word.lower().strip(".,!?\"()'")
             if word in rhetoric:
                 word_ticker += 1
