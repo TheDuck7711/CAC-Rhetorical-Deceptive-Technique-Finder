@@ -21,8 +21,8 @@
             <ul>
             {% for word, count in list_rhetoric.items() %}
                 <li>{{ word }}:{{ count }}</li>
+                {% endfor %}
             </ul>
-            {% endfor %}
         {% endif %}
 
         <h2>Analyzed text:</h2>
