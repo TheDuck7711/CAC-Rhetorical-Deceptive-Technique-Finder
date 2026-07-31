@@ -9,8 +9,12 @@
 </head>
 <body>
     <h1>CAC Pinocchio</h1>
-    <p>Paste a piece of text to analyze signs of rhetoric and diception</p>
+    <p>Paste a piece of text to analyze signs of rhetoric and deception</p>
     <form action="/analyze_v2" method="post">
+        Would you like to exclude words in quotes from the search?<select name="exclude_quotes">
+            <option>yes</option>
+            <option>no</option>
+        </select><br><br>
         <textarea name="input_text" rows="12" cols="80" placeholder="Paste Text Here"></textarea>
         <br>
         <button type="submit">Analyze</button>

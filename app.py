@@ -26,8 +26,9 @@ def analyze():
 @app.route("/analyze_v2", methods=["post"])
 def analyze_v2():
     input_text = request.form["input_text"]
+    exclude_quotes = request.form["exclude_quotes"]
     sentiment_analysis_results = sentiment_analysis(input_text)
-    rhetoric_spotter_results = rhetoric_spotter_v2(input_text)
+    rhetoric_spotter_results = rhetoric_spotter_v2(input_text, exclude_quotes)
     word_count = len(input_text.split())
     return render_template("analyze_v2.html",text=input_text, word_count = word_count, abs_avg = sentiment_analysis_results[0],
                             net_avg = sentiment_analysis_results[1], range_high = sentiment_analysis_results[2],
