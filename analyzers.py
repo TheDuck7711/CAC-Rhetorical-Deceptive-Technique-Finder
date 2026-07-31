@@ -1,7 +1,27 @@
-from loader import load_AFINN, load_rhetoric_words
+from loader import load_AFINN, load_rhetoric_words, load_excluded_words
 
 lex = load_AFINN()
 rhetoric= load_rhetoric_words()
+excluded_words = load_excluded_words()
+
+def word_cleaner(text, exclude_quotes):
+    text_list = text.split
+    quote_indeces = []
+    counter = 1
+    if exclude_quotes == 'yes':
+        for i in range(len(text_list)):
+                if '"' in text_list[i]:
+                    quote_indeces.insert(0,i)
+                    while i+counter < len(text_list) and '"' not in text_list[i + counter]:
+                        quote_indeces.insert(0,i+counter)
+                        counter += 1
+                    counter = 1
+
+        for i in range(len(quote_indeces)):
+            del(text_list[quote_indeces[i]])
+    for word in text_list:
+            word = word.lower().strip(".,!?\"()'")
+    
 
 def sentiment_analysis(text):
     word_list = []
@@ -72,3 +92,10 @@ def rhetoric_spotter_v2(text, exclude_quotes):
                 word_counts[word] = word_counts.get(word,0)+1
     values = (word_ticker, word_ticker/len(text.split()), word_counts)
     return values
+
+def repitition_spotter(text):
+    text_list = text.split().lower().strip(".,!?\"()'")
+    word_counts = {}
+    for word in text_list:
+        if word and word not in excluded_words:
+            word_counts[word] = word_counts.get(word,0) + 1

@@ -16,3 +16,12 @@ def load_rhetoric_words():
             if word:
                 words.add(word)
     return words
+
+def load_excluded_words():
+    words = set()
+    with open("data/excluded_from_repetition.txt") as f:
+        for line in f:
+            word = line.strip().lower()
+            if word:
+                words.add(word)
+    return words
