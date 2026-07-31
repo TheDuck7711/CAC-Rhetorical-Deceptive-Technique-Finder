@@ -5,7 +5,7 @@ rhetoric= load_rhetoric_words()
 excluded_words = load_excluded_words()
 
 def word_cleaner(text, exclude_quotes):
-    text_list = text.split
+    text_list = text.split()
     quote_indeces = []
     counter = 1
     if exclude_quotes == 'yes':
@@ -21,6 +21,7 @@ def word_cleaner(text, exclude_quotes):
             del(text_list[quote_indeces[i]])
     for word in text_list:
             word = word.lower().strip(".,!?\"()'")
+    return text_list
     
 
 def sentiment_analysis(text):
@@ -29,8 +30,7 @@ def sentiment_analysis(text):
     abs = 0
     hig = 0
     low = 0
-    for word in text.split():
-        word = word.lower().strip(".,!?\"()'")
+    for word in text:
         if word in lex:
             word_list.append(word)
 
@@ -59,43 +59,25 @@ def sentiment_analysis(text):
 
 def rhetoric_spotter(text):
     word_list = []
-    for word in text.split():
-            word = word.lower().strip(".,!?\"()'")
-            if word in rhetoric:
-                word_list.append(word)
+    for word in text:
+        if word in rhetoric:
+            word_list.append(word)
     values = (len(word_list),len(word_list)/len(text.split()),word_list)
     return values
 
-def rhetoric_spotter_v2(text, exclude_quotes):
+def rhetoric_spotter_v2(text):
     word_counts = {}
     word_ticker = 0
-    text_list = text.split()
-    quote_indeces = []
-    counter = 1
 
-    if exclude_quotes == 'yes':
-        for i in range(len(text_list)):
-                if '"' in text_list[i]:
-                    quote_indeces.insert(0,i)
-                    while i+counter < len(text_list) and '"' not in text_list[i + counter]:
-                        quote_indeces.insert(0,i+counter)
-                        counter += 1
-                    counter = 1
-
-        for i in range(len(quote_indeces)):
-            del(text_list[quote_indeces[i]])
-              
-    for word in text_list:
-            word = word.lower().strip(".,!?\"()'")
+    for word in text:
             if word in rhetoric:
                 word_ticker += 1
                 word_counts[word] = word_counts.get(word,0)+1
-    values = (word_ticker, word_ticker/len(text.split()), word_counts)
+    values = (word_ticker, word_ticker/len(text), word_counts)
     return values
 
 def repitition_spotter(text):
-    text_list = text.split().lower().strip(".,!?\"()'")
     word_counts = {}
-    for word in text_list:
+    for word in text:
         if word and word not in excluded_words:
             word_counts[word] = word_counts.get(word,0) + 1
