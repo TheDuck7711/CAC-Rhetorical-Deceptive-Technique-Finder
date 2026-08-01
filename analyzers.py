@@ -24,7 +24,7 @@ def word_cleaner(text, exclude_quotes):
         del(text_list[quote_indeces[i]])
 
     for i in range(len(text_list)):
-            text_list[i] = text_list[i].lower().strip(".,!?\"()'")
+            text_list[i] = text_list[i].lower().strip(".,!?\"()' ")
     return text_list
     
 
@@ -82,6 +82,14 @@ def rhetoric_spotter_v2(text):
 
 def repitition_spotter(text):
     word_counts = {}
+    repeated_words = {}
     for word in text:
         if word and word not in excluded_words:
             word_counts[word] = word_counts.get(word,0) + 1
+    for word in word_counts:
+         if word_counts[word] > len(word_counts)/33:
+            repeated_words[word] = word_counts[word]
+    values = (len(repeated_words), repeated_words)
+    return values
+
+    
