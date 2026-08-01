@@ -9,18 +9,22 @@ def word_cleaner(text, exclude_quotes):
     quote_indeces = []
     counter = 1
     if exclude_quotes == 'yes':
-        for i in range(len(text_list)):
-                if '"' in text_list[i]:
-                    quote_indeces.insert(0,i)
-                    while i+counter < len(text_list) and '"' not in text_list[i + counter]:
-                        quote_indeces.insert(0,i+counter)
-                        counter += 1
-                    counter = 1
+        i = 0 
+        while i < len(text_list):
+            if '"' in text_list[i] or '“' in text_list[i]:
+                quote_indeces.insert(0,i)
+                while i+counter < len(text_list) and ('"' not in text_list[i + counter] and '”' not in text_list[i + counter]):
+                    quote_indeces.insert(0,i+counter)
+                    counter += 1
+                i+=counter
+                counter = 1
+            i+=1
 
-        for i in range(len(quote_indeces)):
-            del(text_list[quote_indeces[i]])
-    for word in text_list:
-            word = word.lower().strip(".,!?\"()'")
+    for i in range(len(quote_indeces)):
+        del(text_list[quote_indeces[i]])
+
+    for i in range(len(text_list)):
+            text_list[i] = text_list[i].lower().strip(".,!?\"()'")
     return text_list
     
 
