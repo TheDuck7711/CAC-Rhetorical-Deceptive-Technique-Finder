@@ -14,23 +14,23 @@
         <h2>Sentiment Analysis</h2>
         <p>The extremenes of your text's sentiment was {{ abs_avg }}/5 and the net sentiment on a scale of -5 (very unpositive) and 5 very positive was {{ net_avg }} where the range was from {{ range_low }} to {{ range_high }} </p><br>
 
-        {% if list_rhetoric %}
+        {% if dict_rhetoric %}
             <h2>Flagged Rhetorical Words</h2>
             <p>Your text contains {{ numb_rhetoric }} word flagged for rhetorical language making up {{ percent_rhetoric }}% of your text</p>
             <p>Flagged words with number of appearances:</p>
             <ul>
-            {% for word, count in list_rhetoric.items() %}
+            {% for word, count in dict_rhetoric.items() %}
                 <li>{{ word }}:{{ count }}</li>
                 {% endfor %}
             </ul>
         {% endif %}
         
-        {% if list_repeated_words %}
+        {% if dict_repeated_words %}
             <h2>Flagged Repeated Words</h2>
             <p>Your text contains {{ numb_repeated_words }} words flagged for heavy repitition indicating they may be being used rhetoricaly or indicate a key theme in the text</p>
             <p>Flagged words with number of appearances:</p>
             <ul>
-                {% for word, count in list_repeated_words.items() %}
+                {% for word, count in dict_repeated_words.items() %}
                 <li>{{ word }}:{{ count }}</li>
                 {% endfor %}
             </ul>

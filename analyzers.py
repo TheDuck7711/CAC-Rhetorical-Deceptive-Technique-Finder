@@ -61,14 +61,6 @@ def sentiment_analysis(text):
     values =  (abs,avg,hig,low)
     return values
 
-def rhetoric_spotter(text):
-    word_list = []
-    for word in text:
-        if word in rhetoric:
-            word_list.append(word)
-    values = (len(word_list),len(word_list)/len(text.split()),word_list)
-    return values
-
 def rhetoric_spotter_v2(text):
     word_counts = {}
     word_ticker = 0
@@ -87,7 +79,7 @@ def repitition_spotter(text):
         if word and word not in excluded_words:
             word_counts[word] = word_counts.get(word,0) + 1
     for word in word_counts:
-         if word_counts[word] > len(word_counts)/33:
+         if (word_counts[word] > len(word_counts)/66 and word_counts[word] > 3) or len(word_counts) > 10:
             repeated_words[word] = word_counts[word]
     values = (len(repeated_words), repeated_words)
     return values
