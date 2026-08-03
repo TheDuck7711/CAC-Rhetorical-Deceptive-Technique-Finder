@@ -79,7 +79,7 @@ def repitition_spotter(text):
         if word and word not in excluded_words:
             word_counts[word] = word_counts.get(word,0) + 1
     for word in word_counts:
-         if (word_counts[word] > len(word_counts)/66 and word_counts[word] > 3) or len(word_counts) > 10:
+         if (word_counts[word] > len(word_counts)/66 and word_counts[word] > 3) or word_counts[word] > 10:
             repeated_words[word] = word_counts[word]
     values = (len(repeated_words), repeated_words)
     return values
