@@ -1,29 +1,17 @@
-<!DOCTYPE html>
-
-<html>
-    <head>
-        <title>CAC Pinocchio</title>
-        <style>
-            body {background-color: blanchedalmond;}
-            repeated {
-                background-color: yellow;
-                color: black;
-            }
-            rhetorical {
-                background-color: aqua;
-                color: black;
-            }
-        </style>
-    </head>
-    <body>
+{% extends "base.html" %}
+{% block content %}
         <h1>Analysis Results</h1>
 
+        <div class = "card">
+        <h2>Sentiment Analysis</h2>
         <p>Your text contains {{ word_count  }} words.</p><br>
         <h2>Sentiment Analysis</h2>
         <p>The extremenes of your text's sentiment was {{ abs_avg }}/5 and the net sentiment on a scale of -5 (very unpositive) and 5 very positive was {{ net_avg }} where the range was from {{ range_low }} to {{ range_high }} </p><br>
+        </div>
 
         {% if dict_rhetoric %}
-            <h2>Flagged Rhetorical Words</h2>
+            <div class = "card">
+            <h2><rhetorical>Flagged Rhetorical Words</rhetorical></h2>
             <p>Your text contains {{ numb_rhetoric }} word flagged for rhetorical language making up {{ percent_rhetoric }}% of your text</p>
             <p>Flagged words with number of appearances:</p>
             <ul>
@@ -31,10 +19,12 @@
                 <li>{{ word }}:{{ count }}</li>
                 {% endfor %}
             </ul>
+            </div>
         {% endif %}
         
         {% if dict_repeated_words %}
-            <h2>Flagged Repeated Words</h2>
+            <div class = "card">
+            <h2><repeated>Flagged Repeated Words</repeated></h2>
             <p>Your text contains {{ numb_repeated_words }} words flagged for heavy repitition indicating they may be being used rhetoricaly or indicate a key theme in the text</p>
             <p>Flagged words with number of appearances:</p>
             <ul>
@@ -42,9 +32,12 @@
                 <li>{{ word }}:{{ count }}</li>
                 {% endfor %}
             </ul>
+            </div>
         {% endif %}
+        
+        <div class="card-text">
         <h2>Analyzed text:</h2>
         <p>{{ text }}</p><br>
         <p><a href="/">Back to Home</a></p>
-    </body>
-</html>
+        {% endblock %}
+        </div>

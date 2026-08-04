@@ -1,0 +1,20 @@
+body {background-color: blanchedalmond;}
+repeated {
+    background-color: yellow;
+    color: black;
+}
+rhetorical {
+    background-color: aqua;
+    color: black;
+}
+.card {
+    background: wheat;
+    border: 1px solid #b8814e;
+    border-radius: 8px;
+}
+
+.card-text {
+    background-color: aliceblue;
+    border: 1px solid #739ca3;
+    border-radius: 8px;
+}
