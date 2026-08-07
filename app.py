@@ -23,9 +23,9 @@ def analyze_v2():
     repitition_spotter_results = repitition_spotter(clean_words[0])
     word_count = len(input_text.split())
     final_text = word_highlighter(clean_words[0],clean_words[1], highlight_words, rhetoric_spotter_results[2], repitition_spotter_results[1])
-    return render_template("analyze_v2.html",text=final_text, word_count = word_count, abs_avg = sentiment_analysis_results[0],
-                            net_avg = sentiment_analysis_results[1], range_high = sentiment_analysis_results[2],
-                            range_low = sentiment_analysis_results[3], numb_rhetoric = rhetoric_spotter_results[0], percent_rhetoric = rhetoric_spotter_results[1],
+    return render_template("analyze_v2.html",text=final_text, word_count = word_count, abs_avg = round(sentiment_analysis_results[0],2),
+                            net_avg = round(sentiment_analysis_results[1],2), range_high = sentiment_analysis_results[2],
+                            range_low = sentiment_analysis_results[3], numb_rhetoric = rhetoric_spotter_results[0], percent_rhetoric = round(rhetoric_spotter_results[1],3),
                             dict_rhetoric = rhetoric_spotter_results[2], numb_repeated_words = repitition_spotter_results[0], 
                             dict_repeated_words = repitition_spotter_results[1])
 

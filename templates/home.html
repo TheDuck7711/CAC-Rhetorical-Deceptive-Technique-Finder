@@ -1,11 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
-    <p>Paste a piece of text to analyze signs of rhetoric and deception</p>
+    <p>Paste a piece of text to analyze signs of political rhetoric:</p>
+    <ul>
+        <li>Sentiment Analysis: Determines the average positive or negative sentiment of the text on a scale from -5 (very negative) to 5 (very positive), <br> 
+        keeping track and displaying both the most positive and negative values in the text as the range <br>
+        the extremeness of the sentiment is scored from 0 (neutral) to 5 (extremeness)</li><br>
+        <li>Common Rhetorical Words: Words flagged for being related to contentious topics or that are commonly used persuasively</li><br>
+        <li>Repeated Terms: Identifies frequently used words in text which may indicate they are of thematic or rhetorical importance</li>
+    </ul>
     <form action="/analyze_v2" method="post">
-        Would you like to exclude words in quotes from the search?<select name="exclude_quotes">
+        Would you like to exclude words in quotes from the search?
+        <select name="exclude_quotes">
             <option>yes</option>
             <option>no</option>
-        </select><br><br>
+        </select><br>
+        <ul><li>Excluding quoted text will isolate the analysis to the author's writing</li></ul>
         Would you like to highlight flagged words in the text?<select name="highlight_words">
             <option>yes</option>
             <option>no</option>
