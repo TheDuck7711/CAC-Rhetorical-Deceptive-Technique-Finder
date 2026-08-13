@@ -31,5 +31,5 @@ def analyze_v2():
 
 @app.route("/banana")
 def banana():
-    return "Banana"
+    return render_template("Banana.html")
 
